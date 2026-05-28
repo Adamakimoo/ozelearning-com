@@ -68,7 +68,7 @@ export default function OzeWidget() {
         onClick={() => setOpen((o) => !o)}
         aria-label={open ? "Close Oze chat" : "Chat with Oze, Chief Learning Guide"}
         aria-expanded={open}
-        className="group relative w-14 h-14 rounded-full bg-[#0A3A2F] shadow-xl shadow-black/20 flex items-center justify-center hover:bg-[#0D4D3D] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#A2E8CE]"
+        className="group relative w-24 h-24 rounded-full bg-[#0A3A2F] shadow-xl shadow-black/20 flex items-center justify-center hover:bg-[#0D4D3D] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#A2E8CE]"
       >
         {/* Pulse ring — idle animation */}
         {!open && (
@@ -80,9 +80,9 @@ export default function OzeWidget() {
         <Image
           src="/koalalogo.svg"
           alt=""
-          width={32}
-          height={32}
-          className="w-8 h-8 object-contain"
+          width={64}
+          height={64}
+          className="w-16 h-16 object-contain"
           aria-hidden="true"
         />
       </button>
