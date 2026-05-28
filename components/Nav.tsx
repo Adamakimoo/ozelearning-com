@@ -35,9 +35,9 @@ export default function Nav() {
           <Image
             src="/ozelearning.svg"
             alt="OZE Learning"
-            width={140}
-            height={40}
-            className="h-9 w-auto"
+            width={180}
+            height={52}
+            className="h-12 w-auto"
             priority
           />
         </Link>
