@@ -29,7 +29,7 @@ export default function Nav() {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between py-4">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between py-3">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group" aria-label="OZE Learning home">
           <Image
