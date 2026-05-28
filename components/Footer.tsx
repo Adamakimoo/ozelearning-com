@@ -46,9 +46,9 @@ export default function Footer() {
               <Image
                 src="/ozelearning.svg"
                 alt="OZE Learning"
-                width={180}
-                height={52}
-                className="h-12 w-auto mb-6 brightness-0 invert opacity-90"
+                width={360}
+                height={104}
+                className="h-24 w-auto mb-6 brightness-0 invert opacity-90"
               />
             </Link>
             <p className="text-[#A2E8CE]/60 text-sm leading-relaxed max-w-xs">
