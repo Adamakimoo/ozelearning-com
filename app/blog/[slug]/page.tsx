@@ -17,20 +17,39 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = getPostBySlug(slug);
   if (!post) return {};
+  const url = `https://www.ozelearning.com/blog/${slug}`;
   return {
-    title: `${post.metaTitle} | OZE Learning`,
+    title: post.metaTitle,
     description: post.metaDescription,
-    keywords: post.keywords.join(", "),
+    keywords: post.keywords,
+    authors: [{ name: "OZE Learning", url: "https://www.ozelearning.com" }],
+    alternates: {
+      canonical: url,
+    },
     openGraph: {
       title: post.metaTitle,
       description: post.metaDescription,
       type: "article",
+      url,
+      siteName: "OZE Learning",
       publishedTime: post.publishedAt,
       modifiedTime: post.updatedAt ?? post.publishedAt,
+      authors: ["OZE Learning"],
       tags: post.keywords,
+      images: [
+        {
+          url: "/ozelearning.svg",
+          width: 1200,
+          height: 630,
+          alt: post.metaTitle,
+        },
+      ],
     },
-    alternates: {
-      canonical: `/blog/${slug}`,
+    twitter: {
+      card: "summary_large_image",
+      title: post.metaTitle,
+      description: post.metaDescription,
+      images: ["/ozelearning.svg"],
     },
   };
 }
@@ -63,29 +82,49 @@ export default async function PostPage({ params }: Props) {
     .filter((p) => p.slug !== slug && p.category === post.category)
     .slice(0, 3);
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: post.title,
-    description: post.metaDescription,
-    datePublished: post.publishedAt,
-    dateModified: post.updatedAt ?? post.publishedAt,
-    author: { "@type": "Organization", name: "OZE Learning", url: "https://ozelearning.com" },
-    publisher: {
-      "@type": "Organization",
-      name: "OZE Learning",
-      logo: { "@type": "ImageObject", url: "https://ozelearning.com/ozelearning.svg" },
+  const postUrl = `https://www.ozelearning.com/blog/${slug}`;
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: post.title,
+      description: post.metaDescription,
+      url: postUrl,
+      datePublished: post.publishedAt,
+      dateModified: post.updatedAt ?? post.publishedAt,
+      author: { "@type": "Organization", name: "OZE Learning", url: "https://www.ozelearning.com" },
+      publisher: {
+        "@type": "Organization",
+        name: "OZE Learning",
+        url: "https://www.ozelearning.com",
+        logo: { "@type": "ImageObject", url: "https://www.ozelearning.com/ozelearning.svg" },
+      },
+      image: { "@type": "ImageObject", url: "https://www.ozelearning.com/ozelearning.svg" },
+      keywords: post.keywords.join(", "),
+      articleSection: post.category,
+      inLanguage: "en-AU",
+      mainEntityOfPage: { "@type": "WebPage", "@id": postUrl },
     },
-    keywords: post.keywords.join(", "),
-    articleSection: post.category,
-    inLanguage: "en-AU",
-  };
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://www.ozelearning.com" },
+        { "@type": "ListItem", position: 2, name: "Blog", item: "https://www.ozelearning.com/blog" },
+        { "@type": "ListItem", position: 3, name: post.title, item: postUrl },
+      ],
+    },
+  ];
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd[0]) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd[1]) }}
       />
       <Nav />
       <main>

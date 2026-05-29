@@ -5,14 +5,34 @@ import Footer from "@/components/Footer";
 import { posts, categories } from "@/lib/posts";
 
 export const metadata: Metadata = {
-  title: "Blog — eLearning Insights & EdTech Strategy | OZE Learning",
+  title: "Blog — eLearning Insights & EdTech Strategy",
   description:
-    "Practical insights on digital learning design, eLearning technology, compliance training, and workforce capability — from Australia's leading edTech agency.",
+    "Practical insights on digital learning design, eLearning technology, compliance training, and workforce capability — from Australia's leading EdTech agency.",
+  alternates: {
+    canonical: "https://www.ozelearning.com/blog",
+  },
   openGraph: {
     title: "OZE Learning Blog — eLearning Insights & EdTech Strategy",
     description:
       "Practical insights on digital learning design, eLearning technology, and workforce capability from OZE Learning.",
     type: "website",
+    url: "https://www.ozelearning.com/blog",
+    siteName: "OZE Learning",
+    images: [
+      {
+        url: "/ozelearning.svg",
+        width: 1200,
+        height: 630,
+        alt: "OZE Learning Blog",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "OZE Learning Blog — eLearning Insights & EdTech Strategy",
+    description:
+      "Practical insights on digital learning design, eLearning technology, and workforce capability from OZE Learning.",
+    images: ["/ozelearning.svg"],
   },
 };
 
@@ -79,6 +99,13 @@ export default function BlogPage() {
                     <div className="flex items-center gap-3 mb-5">
                       <CategoryChip category={featured.category} />
                       <span className="text-[#3D5A50] text-xs">{featured.readingTime} min read</span>
+                      <time dateTime={featured.publishedAt} className="text-[#3D5A50] text-xs">
+                        {new Date(featured.publishedAt).toLocaleDateString("en-AU", {
+                          day: "numeric",
+                          month: "long",
+                          year: "numeric",
+                        })}
+                      </time>
                     </div>
                     <h2 className="font-heading font-bold text-2xl lg:text-3xl text-[#0A3A2F] leading-snug mb-4 group-hover:text-[#0D4D3D] transition-colors">
                       {featured.title}
