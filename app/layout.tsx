@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Syne, Plus_Jakarta_Sans } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const syne = Syne({
@@ -71,7 +72,10 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col antialiased">{children}</body>
+      <body className="min-h-full flex flex-col antialiased">
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
