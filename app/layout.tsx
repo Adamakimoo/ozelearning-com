@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Syne, Plus_Jakarta_Sans } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const syne = Syne({
@@ -111,7 +112,10 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className="min-h-full flex flex-col antialiased">{children}</body>
+      <body className="min-h-full flex flex-col antialiased">
+        {children}
+        <SpeedInsights />
+      </body>
     </html>
   );
 }
