@@ -4,35 +4,62 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { posts, categories } from "@/lib/posts";
 
-export const metadata: Metadata = {
-  title: "Blog — eLearning Insights & EdTech Strategy",
+const blogSchema = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "@id": "https://www.ozelearning.com/blog#blog",
+  name: "OZE Learning — eLearning Insights",
   description:
-    "Practical insights on digital learning design, eLearning technology, compliance training, and workforce capability — from Australia's leading EdTech agency.",
+    "Expert articles on eLearning development, compliance training, instructional design, and workforce learning strategy from OZE Learning.",
+  url: "https://www.ozelearning.com/blog",
+  publisher: {
+    "@type": "Organization",
+    "@id": "https://www.ozelearning.com/#organization",
+    name: "OZE Learning",
+  },
+  inLanguage: "en-AU",
+};
+
+export const metadata: Metadata = {
+  title: "eLearning Insights & EdTech Blog",
+  description:
+    "Expert articles on eLearning development, compliance training, instructional design, SCORM vs xAPI, microlearning, and workforce training strategy from OZE Learning — Australia's leading EdTech agency.",
+  keywords: [
+    "eLearning blog",
+    "instructional design articles",
+    "compliance training tips",
+    "xAPI SCORM guide",
+    "microlearning workplace",
+    "EdTech insights Australia",
+    "corporate training strategy",
+    "L&D resources",
+  ],
   alternates: {
     canonical: "https://www.ozelearning.com/blog",
   },
   openGraph: {
-    title: "OZE Learning Blog — eLearning Insights & EdTech Strategy",
+    title: "eLearning Insights & EdTech Blog | OZE Learning",
     description:
-      "Practical insights on digital learning design, eLearning technology, and workforce capability from OZE Learning.",
+      "Expert articles on eLearning, compliance training, instructional design, and workforce learning strategy from OZE Learning.",
     type: "website",
     url: "https://www.ozelearning.com/blog",
     siteName: "OZE Learning",
     images: [
       {
-        url: "/ozelearning.svg",
+        url: "/OG-image.png",
         width: 1200,
         height: 630,
-        alt: "OZE Learning Blog",
+        alt: "OZE Learning Blog — eLearning Insights",
       },
     ],
+    locale: "en_AU",
   },
   twitter: {
     card: "summary_large_image",
-    title: "OZE Learning Blog — eLearning Insights & EdTech Strategy",
+    title: "eLearning Insights & EdTech Blog | OZE Learning",
     description:
-      "Practical insights on digital learning design, eLearning technology, and workforce capability from OZE Learning.",
-    images: ["/ozelearning.svg"],
+      "Expert articles on eLearning, compliance training, and workforce learning strategy.",
+    images: ["/OG-image.png"],
   },
 };
 
@@ -57,6 +84,12 @@ export default function BlogPage() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(blogSchema).replace(/</g, "\\u003c"),
+        }}
+      />
       <Nav />
       <main>
         {/* Hero */}
@@ -164,6 +197,26 @@ export default function BlogPage() {
                   </article>
                 </Link>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Blog CTA */}
+        <section className="bg-[#F7F9F8] pb-24">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="text-center p-10 bg-[#0A3A2F] rounded-3xl">
+              <h2 className="font-heading text-2xl font-bold text-white mb-3">
+                Ready to put these ideas into practice?
+              </h2>
+              <p className="text-white/60 mb-6 max-w-xl mx-auto">
+                OZE Learning builds the programs these articles describe. Get a proposal within one business day.
+              </p>
+              <Link
+                href="/#contact"
+                className="inline-block px-8 py-4 rounded-full bg-[#A2E8CE] text-[#0A3A2F] font-semibold hover:bg-white transition-colors"
+              >
+                Get a Proposal
+              </Link>
             </div>
           </div>
         </section>

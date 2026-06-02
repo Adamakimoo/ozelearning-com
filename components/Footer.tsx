@@ -5,9 +5,9 @@ const navGroups = [
   {
     heading: "Services",
     links: [
-      { label: "Bespoke Digital Learning", href: "#solutions" },
-      { label: "Immersive Simulations",    href: "#solutions" },
-      { label: "Learning Ecosystem Design",href: "#solutions" },
+      { label: "Bespoke Digital Learning", href: "/#solutions" },
+      { label: "Immersive Simulations",    href: "/#solutions" },
+      { label: "Learning Ecosystem Design",href: "/#solutions" },
     ],
   },
   {
@@ -19,12 +19,21 @@ const navGroups = [
       { label: "Contact",        href: "/#contact" },
     ],
   },
+  {
+    heading: "Resources",
+    links: [
+      { label: "Free eLearning Brief Template", href: "/#resources" },
+      { label: "Training ROI Calculator",        href: "/#resources" },
+      { label: "Compliance Audit Checklist",     href: "/#resources" },
+      { label: "FAQ",                            href: "/#faq" },
+    ],
+  },
 ];
 
 const socials = [
   {
-    label: "LinkedIn",
-    href: "https://linkedin.com",
+    label: "LinkedIn — OZE Learning",
+    href: "https://www.linkedin.com/company/oze-learning",
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5" aria-hidden="true">
         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
@@ -32,7 +41,7 @@ const socials = [
     ),
   },
   {
-    label: "YouTube",
+    label: "YouTube — OZE Learning",
     href: "https://www.youtube.com/channel/UCFEJYOj_N1hljkX1KYqqiSw",
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5" aria-hidden="true">
@@ -48,21 +57,21 @@ export default function Footer() {
     <footer className="bg-[#0A3A2F] pt-20 pb-10" aria-label="Site footer">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Top row */}
-        <div className="grid md:grid-cols-3 gap-12 pb-16 border-b border-[#A2E8CE]/10">
+        <div className="grid md:grid-cols-4 gap-12 pb-16 border-b border-[#A2E8CE]/10">
           {/* Brand */}
           <div className="md:col-span-1">
             <Link href="/" aria-label="OZE Learning home">
               <Image
                 src="/ozelearning.svg"
-                alt="OZE Learning"
+                alt="OZE Learning — Australian eLearning Agency"
                 width={360}
                 height={104}
                 className="h-24 w-auto mb-6 brightness-0 invert opacity-90"
               />
             </Link>
             <p className="text-[#A2E8CE]/60 text-sm leading-relaxed max-w-xs">
-              We architect digital learning experiences for the modern workforce.
-              Built proudly in Australia, deployed globally.
+              Australian EdTech agency building bespoke eLearning, compliance
+              training, and immersive simulations for enterprise workforces.
             </p>
             <div className="flex gap-3 mt-6">
               {socials.map((s) => (
@@ -117,7 +126,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="pt-8 flex flex-col sm:flex-row gap-4 items-center justify-between">
           <p className="text-[#A2E8CE]/40 text-xs">
-            © {year} OZE Learning. All rights reserved.
+            © {year} OZE Learning. All rights reserved. ABN: [Your ABN]
           </p>
           <div className="flex gap-6">
             <Link href="/privacy" className="text-[#A2E8CE]/40 text-xs hover:text-[#A2E8CE]/70 transition-colors">

@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const links = [
   { label: "Solutions", href: "/#solutions" },
@@ -14,12 +15,18 @@ const links = [
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  // Use absolute link for CTA when not on homepage
+  const ctaHref = pathname === "/" ? "#contact" : "/#contact";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const closeMenu = useCallback(() => setMenuOpen(false), []);
 
   return (
     <header
@@ -34,7 +41,7 @@ export default function Nav() {
         <Link href="/" className="flex items-center gap-3 group" aria-label="OZE Learning home">
           <Image
             src="/ozelearning.svg"
-            alt="OZE Learning"
+            alt="OZE Learning — Australian eLearning Agency"
             width={360}
             height={104}
             className="h-24 w-auto"
@@ -54,7 +61,7 @@ export default function Nav() {
             </Link>
           ))}
           <Link
-            href="#contact"
+            href={ctaHref}
             className="ml-4 px-5 py-2.5 rounded-full bg-[#A2E8CE] text-[#0A3A2F] text-sm font-semibold hover:bg-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#A2E8CE]"
           >
             Get a Proposal
@@ -85,15 +92,15 @@ export default function Nav() {
               key={l.href}
               href={l.href}
               className="text-[#A2E8CE]/80 hover:text-[#A2E8CE] text-base font-medium transition-colors"
-              onClick={() => setMenuOpen(false)}
+              onClick={closeMenu}
             >
               {l.label}
             </Link>
           ))}
           <Link
-            href="#contact"
+            href={ctaHref}
             className="mt-2 px-5 py-3 rounded-full bg-[#A2E8CE] text-[#0A3A2F] text-sm font-semibold text-center hover:bg-white transition-colors"
-            onClick={() => setMenuOpen(false)}
+            onClick={closeMenu}
           >
             Get a Proposal
           </Link>
